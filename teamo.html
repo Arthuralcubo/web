@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te quiero mucho</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #111010; /* Mismo color de fondo que la página anterior */
+            color: white;
+            font-family: 'Lovers Quarrel', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .animated-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            animation-duration: 5s; /* Duración de la animación */
+            animation-fill-mode: forwards; /* Mantener el estado final de la animación */
+            opacity: 0; /* Inicialmente oculto */
+            font-size: 2em; /* Tamaño del texto */
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Estilo para el botón "Abreme" */
+        #openButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0; /* Inicialmente oculto */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenido de tu nueva página aquí -->
+    <div class="animated-text" style="animation-name: fade-in;">Te amo mucho</div>
+    <div class="animated-text" style="animation-name: fade-in; animation-delay: 5s;">Eres mi luz en la oscuridad</div>
+    <div class="animated-text" style="animation-name: fade-in; animation-delay: 10s;">No puedo esperar a verte</div>
+    <div class="animated-text" style="animation-name: fade-in; animation-delay: 15s;">Eres lo mejor que me ha pasado</div>
+    <div class="animated-text" style="animation-name: fade-in; animation-delay: 20s;">Gracias por todo</div>
+
+    <a href="iloveyou.html"><button id="openButton">Abreme</button></a>
+
+    <script>
+        // Esperar 25 segundos antes de mostrar el botón "Abreme"
+        setTimeout(() => {
+            document.getElementById('openButton').style.opacity = '1';
+        }, 25000); // 20 segundos para los mensajes + 5 segundos de espera
+
+        // Esperar 5 segundos antes de cambiar al siguiente texto
+        setTimeout(() => {
+            document.querySelectorAll('.animated-text').forEach((text, index) => {
+                setTimeout(() => {
+                    text.style.animationName = 'fade-in'; // Cambiar a la animación de aparición
+                }, index * 5000); // Cada texto aparece después de 5 segundos
+            });
+        }, 5000); // Esperar 5 segundos antes de iniciar las animaciones
+    </script>
+</body>
+</html>

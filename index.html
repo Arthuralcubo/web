@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti </title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center; /* Para centrar el texto en la página */
+      background-color: #111010; /* Color de fondo */
+      color: white; /* Color del texto */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Lovers Quarrel', cursive;
+      overflow: hidden; /* Ocultar los corazones que se salen del área visible */
+      position: relative;
+      
+    }
+
+    h1 {
+      position: absolute;
+      top: 41%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1; /* Asegura que el texto esté por encima de los corazones */
+    }
+    
+   
+   /* Estilo para el botón "Abreme" */
+   #openButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    /* Animación de latido */
+    @keyframes heartAnimation {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      70% {
+        transform: scale(2) translateY(-300px); /* Corazones suben más */
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2) translateY(-500px); /* Corazones siguen subiendo */
+        opacity: 0;
+      }
+    }
+
+    /* Estilo de los corazones */
+    .heart {
+      position: absolute;
+      bottom: 0; /* Comienza desde abajo */
+      left: calc(50% - 15px); /* Centrado horizontalmente */
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      animation: heartAnimation 5s linear forwards; /* Animación de latido */
+    }
+
+    /* Pseudo-elemento para dibujar la mitad superior del corazón */
+    .heart::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: red; /* Color del corazón */
+      border-radius: 50% 50% 0 0; /* Forma de corazón */
+      transform: rotate(-45deg); /* Rotación */
+    }
+
+    /* Pseudo-elemento para dibujar la mitad inferior del corazón */
+    .heart::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-color: red; /* Color del corazón */
+      border-radius: 50% 50% 0 0; /* Forma de corazón */
+      transform: rotate(45deg); /* Rotación */
+    }
+  </style>
+</head>
+<body>
+  <h1>"Aunque estemos separados por la distancia, cada mensaje tuyo es como un rayo de sol en mi día."
+    <br><br>- Arturo
+  </h1>
+  
+  <button id="openButton" onclick="redirectToPage()">Abrir</button>
+
+  <script>
+    // Función para redirigir a otra página
+    function redirectToPage() {
+      window.location.href = 'teamo.html'; // Reemplaza 'nueva_pagina.html' con la URL de la nueva página
+    }
+
+    // Función para generar un corazón en una posición aleatoria
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px'; // Posición horizontal aleatoria
+      document.body.appendChild(heart);
+      // Eliminar el corazón después de que termine la animación
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    // Generar un nuevo corazón cada cierto intervalo de tiempo
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
